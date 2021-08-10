@@ -1,0 +1,24 @@
+<apex:page controller="WeatherController">
+    <apex:variable value="0" var="num"/>
+    <apex:pageBlock title="WeatherByDays" >
+        <apex:repeat value="{!DailyWeather}" var="days">
+            <apex:variable value="{! VALUE(num)+1}" var="num"/>
+            <p>Day {!num}</p>
+            <table>
+                <thead>
+                    <th>Time</th>
+                    <th>Temperature</th>
+                </thead>
+                <tbody>
+                    <apex:repeat value="{!days}" var="weather">
+                        <tr>
+                            <td>{! weather.timepoint}:00</td>
+                            <td>{! weather.temp2m}</td>
+                        </tr>
+                    </apex:repeat>
+                </tbody>
+            </table>    
+        </apex:repeat>
+    </apex:pageBlock>
+<apex:includeScript value="{! $Resource.WeatherResource}"/>
+</apex:page>
